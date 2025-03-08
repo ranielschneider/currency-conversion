@@ -12,11 +12,13 @@
         android:layout_width="0dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/button_swap"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggleGroup">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +28,8 @@
             <Spinner
                 android:id="@+id/spinner_from"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown" />
 
             <TextView
                 android:id="@+id/text_amount_from"
@@ -68,7 +71,8 @@
             <Spinner
                 android:id="@+id/spinner_to"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"/>
 
             <TextView
                 android:id="@+id/text_amount_to"
@@ -95,4 +99,59 @@
             android:layout_weight="1"
             android:text="INFO MOEDAS" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonConverter"
+            app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Pill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Converter"
+            app:backgroundTint="@color/toggle_button_tint_selector"
+            app:checkedIcon="@drawable/ic_check"
+            app:iconGravity="textStart"
+            app:strokeColor="@color/green_light"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonGraphic"
+            app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Pill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Graphic"
+            app:backgroundTint="@color/toggle_button_tint_selector"
+            app:checkedIcon="@drawable/ic_check"
+            app:iconGravity="textStart"
+            app:strokeColor="@color/green_light"
+            app:strokeWidth="2dp" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
