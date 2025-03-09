@@ -5,12 +5,16 @@ plugins {
 
 android {
     namespace = "com.example.hacksprint"
-    compileSdk = 34
+    compileSdk = 35
+
+    viewBinding {
+        enable = true
+    }
 
     defaultConfig {
         applicationId = "com.example.hacksprint"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
