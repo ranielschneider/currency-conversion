@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.hacksprint"
-    compileSdk = 35
+    compileSdk = 34
 
     viewBinding {
         enable = true
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "com.example.hacksprint"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -41,6 +41,7 @@ android {
 
 dependencies {
 
+    implementation("com.google.code.gson:gson:2.12.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
