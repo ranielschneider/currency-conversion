@@ -7,7 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.hacksprint.database.hacksprint.ApiService
+import com.example.hacksprint.database.hacksprint.RetrofitClient
 import com.example.hacksprint.databinding.ActivityMainBinding
+import com.google.gson.Gson
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.net.Authenticator.RequestorType
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -18,10 +24,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+
+        val apiService = RetrofitClient.retrofitInstancce.create(ApiService::class.java)
+        apiService.getNowLatestUSD()
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        fetchCurrencyData().start()
 
         enableEdgeToEdge()
 
@@ -30,25 +38,6 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-    }
-
-    private fun fetchCurrencyData(): Thread
-    {
-        return Thread{
-
-            val url = URL("https://v6.exchangerate-api.com/v6/df2b2aa22518deb1608b2694/latest/USD")
-            val connection = url.openConnection() as HttpURLConnection
-
-            if (connection.responseCode == 200)
-            {
-                val inputSystem = connection.inputStream
-                println(inputSystem.toString())
-            }
-            else
-            {
-                binding.textAmountFrom.text = getString(R.string.failed_connection)
-            }
         }
     }
 }
