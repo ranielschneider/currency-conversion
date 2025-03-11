@@ -1,16 +1,24 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     namespace = "com.example.hacksprint"
     compileSdk = 35
+<<<<<<< HEAD
+
+    viewBinding {
+        enable = true
+    }
+=======
+>>>>>>> ff68f135401c464d604396531c0747add8c28952
 
     defaultConfig {
         applicationId = "com.example.hacksprint"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -37,6 +45,12 @@ android {
 
 dependencies {
 
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+    implementation(libs.gson)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity)

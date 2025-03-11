@@ -1,4 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">hacksprint</string>
     <string name="failed_connection">Failed Connection</string>
 </resources>
