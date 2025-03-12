@@ -1,12 +1,15 @@
 package com.example.hacksprint
 
+import kotlinx.serialization.Contextual
+
 
 @kotlinx.serialization.Serializable
 
-data class Request {
-    var result: String,
-    var time_last_update_utc: String,
-    var time_next_update_utc: String,
-    var base_code: String,
-    var rates: Currency
-}
+data class Request (
+    val result: String,
+    val time_last_update_utc: String,
+    val time_next_update_utc: String,
+    val base_code: String,
+    @Contextual
+    val rates: Currency
+)

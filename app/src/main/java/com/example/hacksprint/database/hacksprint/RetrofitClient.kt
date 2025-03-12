@@ -1,6 +1,5 @@
 package com.example.hacksprint.database.hacksprint
 
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
@@ -13,7 +12,7 @@ object RetrofitClient {
     private val httpClient: OkHttpClient
         get() {
             val clientBuilder = OkHttpClient.Builder()
-            val token = ""
+            val token = "df2b2aa22518deb1608b2694"
 
             clientBuilder.addInterceptor { chain ->
                 val original: Request = chain.request()

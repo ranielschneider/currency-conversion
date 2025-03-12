@@ -1,8 +1,7 @@
 package com.example.hacksprint
 
-class Currency {
-
-    var USD: Double,
-    var EUR: Double,
-    var BRL: Double,
-}
+data class Currency(
+    val usd: Double,
+    val eur: Double,
+    val brl: Double,
+)
