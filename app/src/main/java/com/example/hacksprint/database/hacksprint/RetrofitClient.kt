@@ -11,7 +11,7 @@ object RetrofitClient {
     private val httpClient: OkHttpClient
         get() {
             val clientBuilder = OkHttpClient.Builder()
-            val token = ""
+            val token = "df2b2aa22518deb1608b2694"
 
             clientBuilder.addInterceptor { chain ->
                 val original: Request = chain.request()

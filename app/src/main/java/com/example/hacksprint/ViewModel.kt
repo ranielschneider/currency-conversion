@@ -15,8 +15,10 @@ class MainViewModel: ViewModel() {
     fun fetchData() {
         repository.getRequest { request ->
             if (request != null) {
+                println("ViewModel Data: $request") // Log the data
                 requestData.postValue(request)
             } else {
+                println("ViewModel Error: No data received") // Log the error
                 errorMessage.postValue("Failed to fetch data")
             }
         }

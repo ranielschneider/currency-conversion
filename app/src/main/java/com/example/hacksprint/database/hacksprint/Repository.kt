@@ -15,14 +15,17 @@ class ApiRepository {
         apiService.getNowLatestUSD().enqueue(object: Callback<Request>{
             override fun onResponse(call: Call<Request>, response: Response<Request>) {
                 if (response.isSuccessful) {
+                    println("API Response: ${response.body()}") // Log the response
                     val request = response.body()
                     callback(request)
                 } else {
+                    println("API Error: ${response.errorBody()?.string()}") // Log the error
                     callback(null)
                 }
             }
 
             override fun onFailure(call: Call<Request>, t: Throwable) {
+                println("API Failure: ${t.message}") // Log the failure
                 callback(null)
             }
         })
