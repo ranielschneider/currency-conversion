@@ -1,6 +1,4 @@
 package com.example.hacksprint.database.hacksprint
-
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
@@ -26,7 +24,7 @@ object RetrofitClient {
             return clientBuilder.build()
         }
 
-    val retrofitInstancce: Retrofit
+    val retrofitInstance: Retrofit
         get() = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(httpClient)

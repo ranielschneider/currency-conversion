@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-<<<<<<< HEAD
 import com.example.hacksprint.database.hacksprint.ApiService
 import com.example.hacksprint.database.hacksprint.RetrofitClient
 import com.example.hacksprint.databinding.ActivityMainBinding
@@ -17,9 +16,8 @@ import java.io.InputStreamReader
 import java.net.Authenticator.RequestorType
 import java.net.HttpURLConnection
 import java.net.URL
-=======
 import com.google.android.material.button.MaterialButtonToggleGroup
->>>>>>> ff68f135401c464d604396531c0747add8c28952
+//>>>>>>> ff68f135401c464d604396531c0747add8c28952
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        val apiService = RetrofitClient.retrofitInstancce.create(ApiService::class.java)
+        val apiService = RetrofitClient.retrofitInstance.create(ApiService::class.java)
         apiService.getNowLatestUSD()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -62,5 +60,3 @@ class MainActivity : AppCompatActivity() {
             }  )
         }
     }
-
-
