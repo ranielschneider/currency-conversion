@@ -60,11 +60,14 @@ class MainActivity : AppCompatActivity() {
         viewModel.requestData.observe(this) {request ->
             if (request != null) {
                 // Atualiza a UI com os dados
+
                 println("UI Update: $request") // Log the data
+
                 binding.resultTextView.text = request.result
                 binding.baseCodeTextView.text = request.baseCode
                 binding.usdRateTextView.text = request.conversionRates.usd.toString()
                 binding.eurRateTextView.text = request.conversionRates.eur.toString()
+
             }
         }
 
