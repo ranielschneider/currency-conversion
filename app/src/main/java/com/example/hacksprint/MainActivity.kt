@@ -1,6 +1,7 @@
 package com.example.hacksprint
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -12,7 +13,6 @@ import com.example.hacksprint.database.hacksprint.RetrofitClient
 import com.example.hacksprint.databinding.ActivityMainBinding
 import com.google.android.material.button.MaterialButtonToggleGroup
 
-//>>>>>>> ff68f135401c464d604396531c0747add8c28952
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,10 +21,11 @@ class MainActivity : AppCompatActivity() {
     // ViewModel para mostrar os dados da API na tela
     private val viewModel: MainViewModel by viewModels()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       val apiService = RetrofitClient.retrofitInstance.create(ApiService::class.java)
-       apiService.getNowLatestUSD()
+        val apiService = RetrofitClient.retrofitInstance.create(ApiService::class.java)
+        apiService.getNowLatestUSD()
 
         // Inicializa o View Binding
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -32,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
 
-        setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -57,30 +57,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Mostra os dados do ViewModel
-        viewModel.requestData.observe(this) {request ->
-            if (request != null) {
-                // Atualiza a UI com os dados
+        viewModel.requestData.observe(this) { request ->
+            request?.let {
+                println("UI Update: $it") // Log para debug
 
-                println("UI Update: $request") // Log the data
-
-                binding.resultTextView.text = request.result
-                binding.baseCodeTextView.text = request.baseCode
-                binding.usdRateTextView.text = request.conversionRates.usd.toString()
-                binding.eurRateTextView.text = request.conversionRates.eur.toString()
-
+                binding.resultTextView.text = it.result
+                binding.baseCodeTextView.text = it.baseCode
+                binding.usdRateTextView.text = it.conversionRates.usd.toString()
+                binding.eurRateTextView.text = it.conversionRates.eur.toString()
             }
         }
 
         // Mostra possível mensagem de erro
         viewModel.errorMessage.observe(this) { error ->
             if (!error.isNullOrEmpty()) {
-                println("UI Error: $error") // Log the error
-                binding.errorTextView.text = error // Mostra a mensagem em uma TextView
+                println("UI Error: $error")
+                binding.errorTextView.text = error
             }
         }
-
         // Puxa os dados
         viewModel.fetchData()
     }
+
 }
 
