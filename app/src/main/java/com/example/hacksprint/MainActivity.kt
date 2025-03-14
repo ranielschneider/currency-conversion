@@ -3,6 +3,10 @@ package com.example.hacksprint
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -56,15 +60,69 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Spinner
+        val arrayOfMoney = arrayOf("USD","EUR","AUD")
+        var typesOfMoneyFrom: Int = 0
+
+        val adapterFrom = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            arrayOfMoney
+        )
+
+        adapterFrom.setDropDownViewResource(android.R.layout.simple_spinner_item)
+        binding.spinnerFrom.adapter = adapterFrom
+        binding.spinnerFrom.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    p0: AdapterView<*>?,
+                    p1: View?,
+                    p2: Int,
+                    p3: Long,
+                ) {
+                    typesOfMoneyFrom = p2
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    binding.spinnerFrom.getItemAtPosition(0)
+                }
+            }
+
+        var typesOfMoneyTo: Int = 0
+
+        val adapterTo = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            arrayOfMoney
+        )
+
+        adapterTo.setDropDownViewResource(android.R.layout.simple_spinner_item)
+        binding.spinnerTo.adapter= adapterTo
+        binding.spinnerTo.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    p0: AdapterView<*>?,
+                    p1: View?,
+                    p2: Int,
+                    p3: Long,
+                ) {
+                    typesOfMoneyTo = p2
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    binding.spinnerTo.getItemAtPosition(0)
+                }
+            }
+
+
         // Mostra os dados do ViewModel
         viewModel.requestData.observe(this) { request ->
             request?.let {
                 println("UI Update: $it") // Log para debug
 
-                binding.resultTextView.text = it.result
-                binding.baseCodeTextView.text = it.baseCode
-                binding.usdRateTextView.text = it.conversionRates.usd.toString()
-                binding.eurRateTextView.text = it.conversionRates.eur.toString()
+                val currencyList = it.conversionRates.keys.toList()
+
+                updateSpinners(currencyList)
             }
         }
 
@@ -78,6 +136,20 @@ class MainActivity : AppCompatActivity() {
         // Puxa os dados
         viewModel.fetchData()
     }
+
+    private fun updateSpinners(currencyList: List<String>) {
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            currencyList
+        )
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
+
+        binding.spinnerFrom.adapter = adapter
+        binding.spinnerTo.adapter = adapter
+    }
+
 
 }
 
