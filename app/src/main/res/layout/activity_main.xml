@@ -1,217 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/layout_exchange"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/button_swap"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleGroup">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/spinner_from"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown" />
-
-            <TextView
-                android:id="@+id/text_amount_from"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxLength="6"
-                android:text="50,00" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_swap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="⇅"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_exchange" />
-
-    <LinearLayout
-        android:id="@+id/layout_exchange2"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_swap">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/spinner_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"/>
-
-            <TextView
-                android:id="@+id/text_amount_to"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxLength="6"
-                android:text="100,50" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/layout_exchange2"
-        tools:layout_editor_absoluteX="16dp">
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="Currency Converter"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <!-- Subtitle / Helper text -->
+        <TextView
+            android:id="@+id/subtitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check live rates, set rate alerts, receive notifications and more"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            android:paddingBottom="16dp"
+            android:layout_gravity="center"/>
+
+        <!-- A Material Toggle Group if you still want the “Converter / Graphic” buttons -->
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleGroup"
+            android:layout_width="269dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:selectionRequired="true"
+            app:singleSelection="true"
+            android:layout_gravity="center">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonConverter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Converter"
+                app:backgroundTint="@color/toggle_button_tint_selector"
+                app:checkedIcon="@drawable/ic_check"
+                app:iconGravity="textStart"
+                app:strokeColor="@color/green_light"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonGraphic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Graphic"
+                app:backgroundTint="@color/toggle_button_tint_selector"
+                app:checkedIcon="@drawable/ic_check"
+                app:iconGravity="textStart"
+                app:strokeColor="@color/green_light"
+                app:strokeWidth="2dp" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <!-- The main card containing From and To currency rows + Swap button -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/conversionCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:id="@+id/conversionLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!-- Row: FROM currency -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp">
+
+                    <!-- Spinner for FROM -->
+                    <Spinner
+                        android:id="@+id/spinnerFrom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dropdown" />
+
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="0dp" />
+
+                    <!-- Text / EditText for the amount FROM -->
+                    <EditText
+                        android:id="@+id/text_amount_from"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:inputType="numberDecimal"
+                        android:maxLength="6"
+                        android:text="1000.00" />
+
+                </LinearLayout>
+
+                <!-- Swap Button -->
+                <ImageButton
+                    android:id="@+id/button_swap"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginVertical="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/swap_currency"
+                    android:src="@drawable/ic_swap_vert"
+                    android:paddingBottom="8dp"/>
+
+                <!-- Row: TO currency -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp">
+
+                    <!-- Spinner for TO -->
+                    <Spinner
+                        android:id="@+id/spinnerTo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:spinnerMode="dropdown" />
+
+                    <!-- Spacing -->
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="0dp" />
+
+                    <!-- TextView to show converted amount -->
+                    <TextView
+                        android:id="@+id/text_amount_to"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="1356.74"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Indicative Exchange Rate line -->
+        <LinearLayout
+            android:id="@+id/indicativeRateLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Indicative Exchange Rate"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp"
+                android:layout_marginBottom="4dp"
+                />
+
+            <TextView
+                android:id="@+id/rateInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 USD = 1.36 SGD"
+                android:textSize="14sp"
+                />
+        </LinearLayout>
+
+        <!-- Any additional info or debug text you want -->
+        <TextView
+            android:id="@+id/resultTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Result: "
+            android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/text_info_coin"
-            android:layout_width="0dp"
+            android:id="@+id/baseCodeTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="INFO MOEDAS" />
+            android:text="Base Code"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/usdRateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USD Rate"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/eurRateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EUR Rate"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/errorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"/>
+
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:selectionRequired="true"
-        app:singleSelection="true">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonConverter"
-            app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Pill"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Converter"
-            app:backgroundTint="@color/toggle_button_tint_selector"
-            app:checkedIcon="@drawable/ic_check"
-            app:iconGravity="textStart"
-            app:strokeColor="@color/green_light"
-            app:strokeWidth="2dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonGraphic"
-            app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Pill"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Graphic"
-            app:backgroundTint="@color/toggle_button_tint_selector"
-            app:checkedIcon="@drawable/ic_check"
-            app:iconGravity="textStart"
-            app:strokeColor="@color/green_light"
-            app:strokeWidth="2dp" />
-
-    </com.google.android.material.button.MaterialButtonToggleGroup>
-
-    <!-- TextView to display the result -->
-    <TextView
-        android:id="@+id/resultTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        tools:text="Result"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <!-- TextView to display the base code -->
-    <TextView
-        android:id="@+id/baseCodeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        tools:text="Base Code"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultTextView" />
-
-    <!-- TextView to display the USD rate -->
-    <TextView
-        android:id="@+id/usdRateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        tools:text="USD Rate"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/baseCodeTextView" />
-
-    <!-- TextView to display the EUR rate -->
-    <TextView
-        android:id="@+id/eurRateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        tools:text="EUR Rate:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usdRateTextView" />
-
-    <!-- TextView to display error messages -->
-    <TextView
-        android:id="@+id/errorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eurRateTextView" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

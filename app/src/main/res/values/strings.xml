@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">hacksprint</string>
     <string name="failed_connection">Failed Connection</string>
+    <string name="swap_currency">swap_currency</string>
 </resources>
