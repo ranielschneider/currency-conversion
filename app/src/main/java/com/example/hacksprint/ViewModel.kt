@@ -23,11 +23,11 @@ class MainViewModel: ViewModel() {
             }
         }
     }
-    fun exchangeMoney(base: String, target: String, quantity: Double, callback: (Double) -> Unit) {
+    fun exchangeMoney(base: String, target: String, callback: (Double) -> Unit) {
         repository.getConversionRate(base, target) { request ->
             if (request != null) {
                 val rate = request.rateOfConversion
-                callback(rate * quantity)
+                callback (rate)
             } else {
                 errorMessage.postValue("Failed to fetch data")
                 callback(0.0)
