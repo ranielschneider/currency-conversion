@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">hacksprint</string>
-    <string name="failed_connection">Failed Connection</string>
+    <string name="graphic">Graphic</string>
+    <string name="converter">Converter</string>
+    <string name="info_moedas">INFO MOEDAS</string>
+    <string name="button">⇅</string>
+    <string name="valor_converter">Valor à converter</string>
 </resources>
