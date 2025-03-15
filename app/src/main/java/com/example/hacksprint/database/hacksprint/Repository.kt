@@ -30,4 +30,21 @@ class ApiRepository {
             }
         })
     }
+
+    fun getConversionRate(base:String, target: String,callback: (Request?) -> Unit){
+        apiService.exchangeMoney(base,target).enqueue(object: Callback<Request>{
+            override fun onResponse(call: Call<Request>, response: Response<Request>) {
+                if (response.isSuccessful) {
+                    val request = response.body()
+                    callback(request)
+                } else {
+                    callback(null)
+                }
+            }
+
+            override fun onFailure(call: Call<Request>, t: Throwable) {
+                callback(null)
+            }
+        })
+    }
 }

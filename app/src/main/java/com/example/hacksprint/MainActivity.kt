@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val apiService = RetrofitClient.retrofitInstance.create(ApiService::class.java)
-        apiService.getNowLatestUSD()
 
         // Inicializa o View Binding
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -61,13 +59,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Spinner
-        val arrayOfMoney = arrayOf("USD","EUR","AUD")
+        var currencyList = listOf("USD", "EUR", "AUD")
         var typesOfMoneyFrom: Int = 0
 
         val adapterFrom = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
-            arrayOfMoney
+            currencyList
         )
 
         adapterFrom.setDropDownViewResource(android.R.layout.simple_spinner_item)
@@ -93,11 +91,11 @@ class MainActivity : AppCompatActivity() {
         val adapterTo = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
-            arrayOfMoney
+            currencyList
         )
 
         adapterTo.setDropDownViewResource(android.R.layout.simple_spinner_item)
-        binding.spinnerTo.adapter= adapterTo
+        binding.spinnerTo.adapter = adapterTo
         binding.spinnerTo.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -120,7 +118,7 @@ class MainActivity : AppCompatActivity() {
             request?.let {
                 println("UI Update: $it") // Log para debug
 
-                val currencyList = it.conversionRates.keys.toList()
+                currencyList = it.conversionRates.keys.toList()
 
                 updateSpinners(currencyList)
             }
@@ -135,6 +133,17 @@ class MainActivity : AppCompatActivity() {
         }
         // Puxa os dados
         viewModel.fetchData()
+
+        binding.buttonSwap.setOnClickListener {
+            val quantityOfMoney = binding.textAmountFrom.text.toString().toDouble()
+            val baseMoney = currencyList[typesOfMoneyFrom]
+            val targetMoney = currencyList[typesOfMoneyTo]
+
+            viewModel.exchangeMoney(baseMoney, targetMoney, quantityOfMoney) { result ->
+                binding.textAmountTo.text = result.toString()
+            }
+        }
+
     }
 
     private fun updateSpinners(currencyList: List<String>) {
