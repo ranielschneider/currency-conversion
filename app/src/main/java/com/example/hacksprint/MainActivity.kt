@@ -135,12 +135,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.fetchData()
 
         binding.buttonSwap.setOnClickListener {
-            val quantityOfMoney = binding.textAmountFrom.text.toString().toDouble()
+            val quantityOfMoney = binding.textAmountFrom.editText?.text.toString().toDouble()
             val baseMoney = currencyList[typesOfMoneyFrom]
             val targetMoney = currencyList[typesOfMoneyTo]
 
             viewModel.exchangeMoney(baseMoney, targetMoney, quantityOfMoney) { result ->
-                binding.textAmountTo.text = result.toString()
+                binding.textAmountTo.setText(result.toString())
             }
         }
 
