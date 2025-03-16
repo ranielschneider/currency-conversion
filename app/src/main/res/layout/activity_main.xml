@@ -125,7 +125,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
         android:text="@string/info_moedas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_amount_to_layout" />
+
+
+    <!-- TextView to display the base code -->
+    <TextView
+        android:id="@+id/baseCodeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="4dp"
+        android:text="@string/taxa_de_conversao"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_info_coin" />
+
+    <!-- TextView to display the USD rate -->
+    <TextView
+        android:id="@+id/baseRateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/targetRateTextView"
+        app:layout_constraintStart_toEndOf="@+id/baseCodeTextView"
+        app:layout_constraintTop_toTopOf="@+id/baseCodeTextView"
+        tools:text="USD: 1" />
+
+    <!-- TextView to display the EUR rate -->
+    <TextView
+        android:id="@+id/targetRateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:maxLength="11"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/baseRateTextView"
+        tools:text="EUR: 13.500" />
+
+    <!-- TextView to display error messages -->
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/targetRateTextView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
