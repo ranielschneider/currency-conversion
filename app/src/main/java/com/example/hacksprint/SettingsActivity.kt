@@ -30,18 +30,6 @@ class SettingsActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Set up button listeners
-        binding.darkButton.setOnClickListener {
-            ThemeHelper.setTheme("dark")
-            ThemeHelper.saveTheme(this, "dark")
-            recreate() // Recreate the activity to apply the new theme
-        }
-
-        binding.lightButton.setOnClickListener {
-            ThemeHelper.setTheme("light")
-            ThemeHelper.saveTheme(this, "light")
-            recreate() // Recreate the activity to apply the new theme
-        }
 
     }
 

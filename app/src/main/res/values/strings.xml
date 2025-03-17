@@ -8,4 +8,5 @@
     <string name="taxa_de_conversao">Taxa de conversão:</string>
     <string name="configuracoes">Configurações</string>
     <string name="modo_escuro">Modo escuro</string>
+    <string name="settings_button">Configuração</string>
 </resources>

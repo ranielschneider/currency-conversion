@@ -41,7 +41,6 @@
         app:layout_constraintTop_toBottomOf="@+id/sub_head" />
 
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -49,26 +48,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="210dp" />
 
-    <Button
-        android:id="@+id/darkButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="6dp"
-        android:text="On"
-        app:cornerRadius="6dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
-    <Button
-        android:id="@+id/lightButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="24dp"
-        android:text="Off"
-        app:cornerRadius="6dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

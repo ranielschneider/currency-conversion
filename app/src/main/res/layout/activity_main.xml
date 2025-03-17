@@ -101,7 +101,7 @@
         android:id="@+id/baseCodeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="24dp"
         android:text="@string/taxa_de_conversao"
         android:textSize="18sp"
@@ -138,11 +138,12 @@
         android:id="@+id/errorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="534dp" />
+        app:layout_constraintTop_toBottomOf="@+id/baseRateTextView" />
 
     <ImageButton
         android:id="@+id/settingsButton"
@@ -151,6 +152,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/settings_button"
         android:src="@drawable/settings_24px"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -43,29 +43,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val toggleGroup = findViewById<MaterialButtonToggleGroup>(R.id.toggleGroup)
-        toggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            when (checkedId) {
-                R.id.buttonConverter -> {
-                    if (isChecked) {
-                    } else {
-                    }
-                }
-
-                R.id.buttonGraphic -> {
-                    if (isChecked) {
-                    } else {
-                    }
-                }
-            }
-        }
-
         // Settings button
 
         binding.settingsButton.setOnClickListener {
             openSettings()
         }
-
         // Spinner
         var currencyList = listOf("USD", "EUR", "AUD")
         var typesOfMoneyFrom: Int = 0
