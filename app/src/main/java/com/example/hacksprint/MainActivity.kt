@@ -2,6 +2,7 @@ package com.example.hacksprint
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         val apiService = RetrofitClient.retrofitInstance.create(ApiService::class.java)
 
@@ -56,6 +58,12 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+        // Settings button
+
+        binding.settingsButton.setOnClickListener {
+            openSettings()
         }
 
         // Spinner
@@ -150,6 +158,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun openSettings() {
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun updateSpinners(currencyList: List<String>) {
         val adapter = ArrayAdapter(
             this,
@@ -162,7 +175,6 @@ class MainActivity : AppCompatActivity() {
         binding.spinnerFrom.adapter = adapter
         binding.spinnerTo.adapter = adapter
     }
-
 
 }
 
