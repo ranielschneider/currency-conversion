@@ -2,6 +2,7 @@ package com.example.hacksprint
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         val apiService = RetrofitClient.retrofitInstance.create(ApiService::class.java)
 
@@ -41,23 +43,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val toggleGroup = findViewById<MaterialButtonToggleGroup>(R.id.toggleGroup)
-        toggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            when (checkedId) {
-                R.id.buttonConverter -> {
-                    if (isChecked) {
-                    } else {
-                    }
-                }
+        // Settings button
 
-                R.id.buttonGraphic -> {
-                    if (isChecked) {
-                    } else {
-                    }
-                }
-            }
+        binding.settingsButton.setOnClickListener {
+            openSettings()
         }
-
         // Spinner
         var currencyList = listOf("USD", "EUR", "AUD")
         var typesOfMoneyFrom: Int = 0
@@ -150,6 +140,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun openSettings() {
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun updateSpinners(currencyList: List<String>) {
         val adapter = ArrayAdapter(
             this,
@@ -162,7 +157,6 @@ class MainActivity : AppCompatActivity() {
         binding.spinnerFrom.adapter = adapter
         binding.spinnerTo.adapter = adapter
     }
-
 
 }
 

@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <ImageView
@@ -14,48 +15,11 @@
         android:layout_marginTop="16dp"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:selectionRequired="true"
-        app:singleSelection="true">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonConverter"
-            app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Pill"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/converter"
-            app:backgroundTint="@color/toggle_button_tint_selector"
-            app:checkedIcon="@drawable/ic_check"
-            app:iconGravity="textStart"
-            app:strokeColor="@color/green_light"
-            app:strokeWidth="2dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonGraphic"
-            app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Pill"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/graphic"
-            app:backgroundTint="@color/toggle_button_tint_selector"
-            app:checkedIcon="@drawable/ic_check"
-            app:iconGravity="textStart"
-            app:strokeColor="@color/green_light"
-            app:strokeWidth="2dp" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <Spinner
         android:id="@+id/spinner_from"
@@ -70,10 +34,10 @@
         android:id="@+id/text_amount_from"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/spinner_from"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toggleGroup"
-        android:layout_marginTop="16dp">
+        app:layout_constraintStart_toEndOf="@id/spinner_from"
+        app:layout_constraintTop_toBottomOf="@id/imageView">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -83,22 +47,20 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <Button
         android:id="@+id/button_swap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/button"
-        app:layout_constraintTop_toBottomOf="@id/text_amount_from"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/text_amount_from" />
 
     <Spinner
         android:id="@+id/spinner_to"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-
         app:layout_constraintBottom_toBottomOf="@+id/text_amount_to_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_amount_to_layout" />
@@ -126,9 +88,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:gravity="center"
+        android:text="@string/info_moedas"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:text="@string/info_moedas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_amount_to_layout" />
@@ -139,11 +101,11 @@
         android:id="@+id/baseCodeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="24dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="4dp"
         android:text="@string/taxa_de_conversao"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_info_coin" />
 
@@ -163,23 +125,35 @@
         android:id="@+id/targetRateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:maxLength="11"
         android:layout_marginEnd="16dp"
+        android:maxLength="11"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/baseRateTextView"
         tools:text="EUR: 13.500" />
 
     <!-- TextView to display error messages -->
+
     <TextView
         android:id="@+id/errorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="128dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/targetRateTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/baseRateTextView" />
 
-
+    <ImageButton
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/settings_button"
+        android:src="@drawable/settings_24px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
