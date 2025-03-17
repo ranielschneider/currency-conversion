@@ -15,7 +15,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.hacksprint.database.hacksprint.ApiService
 import com.example.hacksprint.database.hacksprint.RetrofitClient
 import com.example.hacksprint.databinding.ActivityMainBinding
-import com.google.android.material.button.MaterialButtonToggleGroup
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        val apiService = RetrofitClient.retrofitInstance.create(ApiService::class.java)
+        RetrofitClient.retrofitInstance.create(ApiService::class.java)
 
         // Inicializa o View Binding
         binding = ActivityMainBinding.inflate(layoutInflater)
