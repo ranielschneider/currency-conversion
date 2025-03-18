@@ -15,7 +15,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.hacksprint.database.hacksprint.ApiService
 import com.example.hacksprint.database.hacksprint.RetrofitClient
 import com.example.hacksprint.databinding.ActivityMainBinding
-import com.google.android.material.button.MaterialButtonToggleGroup
 
 
 class MainActivity : AppCompatActivity() {
@@ -126,17 +125,25 @@ class MainActivity : AppCompatActivity() {
 
         // Button
         binding.buttonSwap.setOnClickListener {
-            val quantityOfMoney = binding.textAmountFrom.editText?.text.toString().toDouble()
-            val baseMoney = currencyList[typesOfMoneyFrom]
-            val targetMoney = currencyList[typesOfMoneyTo]
+            try {
+                val inputText = binding.textAmountFrom.text?.toString()
+                val quantityOfMoney =  inputText?.toDouble() ?: 1.0
 
-            viewModel.exchangeMoney(baseMoney, targetMoney) { result ->
-                val value = result * quantityOfMoney
-                binding.textAmountTo.setText(value.toString())
-                binding.targetRateTextView.text = "$targetMoney: $result"
+                val baseMoney = currencyList[typesOfMoneyFrom]
+                val targetMoney = currencyList[typesOfMoneyTo]
+
+                viewModel.exchangeMoney(baseMoney, targetMoney) { result ->
+                    val value = result * quantityOfMoney
+                    binding.textAmountTo.setText(value.toString())
+                    binding.targetRateTextView.text = "$targetMoney: $result"
+                }
+                binding.baseRateTextView.text = "$baseMoney: 1"
+
+            } catch (e: NumberFormatException) {
+                binding.errorTextView.text = "Valor inválido"
             }
-            binding.baseRateTextView.text = "$baseMoney: 1"
         }
+
 
     }
 

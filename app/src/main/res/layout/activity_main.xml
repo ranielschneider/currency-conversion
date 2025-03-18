@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="Conversor Coin"
+        android:text="@string/conversor_coin"
         android:textColor="@color/green_dark"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="O jeito mais fácil de converter dinheiro"
+        android:text="@string/o_jeito_mais_f_cil_de_converter_dinheiro"
         android:textColor="@color/green_light"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
                     android:id="@+id/text_amount_from"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="1000.20"
+                    android:hint="@string/_1000_20"
                     android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,12 +114,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:hint="100.50" />
+                    android:hint="@string/_100_50" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </LinearLayout>
-
-    !-- TextView to display the base code -->
 
     <TextView
         android:id="@+id/baseCodeTextView"
@@ -133,7 +131,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardContainer" />
 
-    <!-- TextView to display the USD rate -->
     <TextView
         android:id="@+id/baseRateTextView"
         android:layout_width="wrap_content"
@@ -144,7 +141,6 @@
         app:layout_constraintTop_toTopOf="@+id/baseCodeTextView"
         tools:text="USD: 1" />
 
-    <!-- TextView to display the EUR rate -->
     <TextView
         android:id="@+id/targetRateTextView"
         android:layout_width="wrap_content"
@@ -155,8 +151,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/baseRateTextView"
         tools:text="EUR: 13.500" />
-
-    <!-- TextView to display error messages -->
 
     <TextView
         android:id="@+id/errorTextView"
@@ -187,7 +181,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Nova Conversao"
+        android:text="@string/nova_conversao"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

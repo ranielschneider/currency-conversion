@@ -9,4 +9,9 @@
     <string name="configuracoes">Configurações</string>
     <string name="modo_escuro">Modo escuro</string>
     <string name="settings_button">Configuração</string>
+    <string name="nova_conversao">Nova Conversao</string>
+    <string name="_100_50">100.50</string>
+    <string name="_1000_20">1000.20</string>
+    <string name="o_jeito_mais_f_cil_de_converter_dinheiro">O jeito mais fácil de converter dinheiro</string>
+    <string name="conversor_coin">Conversor Coin</string>
 </resources>
