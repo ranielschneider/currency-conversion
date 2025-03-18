@@ -12,7 +12,7 @@ class ApiRepository {
     private val apiService: ApiService = retrofitInstance.create(ApiService::class.java)
 
     fun getRequest(callback: (Request?) -> Unit) {
-        apiService.getNowLatestUSD().enqueue(object: Callback<Request>{
+        apiService.getNowLatestUSD().enqueue(object : Callback<Request> {
             override fun onResponse(call: Call<Request>, response: Response<Request>) {
                 if (response.isSuccessful) {
                     println("API Response: ${response.body()}") // Log the response
@@ -31,8 +31,8 @@ class ApiRepository {
         })
     }
 
-    fun getConversionRate(base:String, target: String,callback: (Request?) -> Unit){
-        apiService.exchangeMoney(base,target).enqueue(object: Callback<Request>{
+    fun getConversionRate(base: String, target: String, callback: (Request?) -> Unit) {
+        apiService.exchangeMoney(base, target).enqueue(object : Callback<Request> {
             override fun onResponse(call: Call<Request>, response: Response<Request>) {
                 if (response.isSuccessful) {
                     val request = response.body()

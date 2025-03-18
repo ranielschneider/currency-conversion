@@ -71,7 +71,6 @@ class CurrencySpinnerAdapter(
     }
 }
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -83,6 +82,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        RetrofitClient.retrofitInstance.create(ApiService::class.java)
 
         // Inicialização do View Binding
         binding = ActivityMainBinding.inflate(layoutInflater)
