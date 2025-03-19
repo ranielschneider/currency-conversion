@@ -20,6 +20,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.hacksprint.database.hacksprint.ApiService
 import com.example.hacksprint.database.hacksprint.RetrofitClient
 import com.example.hacksprint.databinding.ActivityMainBinding
+import kotlinx.serialization.StringFormat
+import okhttp3.internal.format
 import org.json.JSONArray
 import java.net.URL
 
@@ -167,7 +169,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Conversão de moedas
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "DefaultLocale")
     private fun makeConversion() {
         try {
             val inputText = binding.textAmountFrom.text?.toString()
@@ -178,7 +180,7 @@ class MainActivity : AppCompatActivity() {
 
             viewModel.exchangeMoney(baseCurrency, targetCurrency) { result ->
                 val convertedValue = result * quantity
-                binding.textAmountTo.setText(convertedValue.toString())
+                binding.textAmountTo.setText(String.format("%.2f", convertedValue))
                 binding.targetRateTextView.text = "$targetCurrency: $result"
             }
             binding.baseRateTextView.text = "$baseCurrency: 1"
