@@ -6,7 +6,7 @@
     <corners android:radius="16dp" />
 
     <!-- White fill -->
-    <solid android:color="@android:color/white" />
+    <solid android:color="@android:color/transparent" />
 
     <!-- Optional gray stroke/border -->
     <stroke

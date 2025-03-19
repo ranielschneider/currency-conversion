@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">hacksprint</string>
-    <string name="graphic">Graphic</string>
-    <string name="converter">Converter</string>
+    <string name="app_name">Conversor Coin</string>
     <string name="info_moedas">INFO MOEDAS</string>
     <string name="button">⇅</string>
     <string name="valor_converter">Valor à converter</string>
@@ -10,8 +8,6 @@
     <string name="modo_escuro">Modo escuro</string>
     <string name="settings_button">Configuração</string>
     <string name="nova_conversao">Nova Conversao</string>
-    <string name="_100_50">100.50</string>
-    <string name="_1000_20">1000.20</string>
     <string name="o_jeito_mais_f_cil_de_converter_dinheiro">O jeito mais fácil de converter dinheiro</string>
-    <string name="conversor_coin">Conversor Coin</string>
+    <string name="valor_convertido">Valor convertido</string>
 </resources>
